@@ -1,0 +1,635 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfkharadi"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureSqlDatabase1_PS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1_PS'"
+		},
+		"AzureSqlDatabase1_krishna_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1_krishna'"
+		},
+		"LS_AC_AZURE_SQL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_AC_AZURE_SQL'"
+		},
+		"LS_Abhishekh_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_Abhishekh'"
+		},
+		"LS_Azure_StorageAccount_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_Azure_StorageAccount'"
+		},
+		"LS_MSSQL_Abhijit_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LS_MSSQL_Abhijit'"
+		},
+		"Oracle1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Oracle1'"
+		},
+		"SQL_PS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SQL_PS'"
+		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		},
+		"ds_AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ds_AzureSqlDatabase1'"
+		},
+		"ds_praful_mssql_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ds_praful_mssql'"
+		},
+		"ls_AzureBlobStorag_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_AzureBlobStorag'"
+		},
+		"ls_AzureStorageAccount_Praful_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_AzureStorageAccount_Praful'"
+		},
+		"ls_AzurestrorageAccount_anuja_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_AzurestrorageAccount_anuja'"
+		},
+		"ls_ParquetBulkCopy_shantanu_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_ParquetBulkCopy_shantanu'"
+		},
+		"ls_SQL_Krishna_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_SQL_Krishna'"
+		},
+		"ls_anuja_SqlServer_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_anuja_SqlServer'"
+		},
+		"ls_az_mssql_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_az_mssql'"
+		},
+		"ls_azureSQL_shantanu_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azureSQL_shantanu'"
+		},
+		"ls_azureblobstorage_rsckharadi_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azureblobstorage_rsckharadi'"
+		},
+		"ls_azuresql_anuja_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azuresql_anuja'"
+		},
+		"ls_azurestorageacc_Shantanu_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azurestorageacc_Shantanu'"
+		},
+		"ls_mssql_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_mssql'"
+		},
+		"ls_oracle_anuja_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_oracle_anuja'"
+		},
+		"ls_oracle_shantanu_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_oracle_shantanu'"
+		},
+		"ls_shantanu_SQL_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_shantanu_SQL'"
+		},
+		"ls_snowflake_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_snowflake'"
+		},
+		"ls_sql_k_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sql_k'"
+		},
+		"ls_sql_shantanu_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sql_shantanu'"
+		},
+		"ls_sqlserver_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_sqlserver'"
+		},
+		"AK_Trigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"TRG_AC_1_Oct_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trg_demobulkcompyfolder_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trg_krishna_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trg_shantanu_trigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trg_trigger_anuja_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trg_triggerdemo_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trigger1_prakhar_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adfkharadi_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureSqlDatabase1_PS_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_PS_connectionString')]"
+					},
+					"AzureSqlDatabase1_krishna_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_krishna_connectionString')]"
+					},
+					"LS_AC_AZURE_SQL_connectionString": {
+						"value": "[parameters('LS_AC_AZURE_SQL_connectionString')]"
+					},
+					"LS_Azure_StorageAccount_connectionString": {
+						"value": "[parameters('LS_Azure_StorageAccount_connectionString')]"
+					},
+					"SqlServer1_connectionString": {
+						"value": "[parameters('SqlServer1_connectionString')]"
+					},
+					"ds_AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('ds_AzureSqlDatabase1_connectionString')]"
+					},
+					"ls_AzureBlobStorag_connectionString": {
+						"value": "[parameters('ls_AzureBlobStorag_connectionString')]"
+					},
+					"ls_AzureStorageAccount_Praful_connectionString": {
+						"value": "[parameters('ls_AzureStorageAccount_Praful_connectionString')]"
+					},
+					"ls_AzurestrorageAccount_anuja_connectionString": {
+						"value": "[parameters('ls_AzurestrorageAccount_anuja_connectionString')]"
+					},
+					"ls_ParquetBulkCopy_shantanu_connectionString": {
+						"value": "[parameters('ls_ParquetBulkCopy_shantanu_connectionString')]"
+					},
+					"ls_az_mssql_connectionString": {
+						"value": "[parameters('ls_az_mssql_connectionString')]"
+					},
+					"ls_azureSQL_shantanu_connectionString": {
+						"value": "[parameters('ls_azureSQL_shantanu_connectionString')]"
+					},
+					"ls_azureblobstorage_rsckharadi_connectionString": {
+						"value": "[parameters('ls_azureblobstorage_rsckharadi_connectionString')]"
+					},
+					"ls_azuresql_anuja_connectionString": {
+						"value": "[parameters('ls_azuresql_anuja_connectionString')]"
+					},
+					"ls_azurestorageacc_Shantanu_connectionString": {
+						"value": "[parameters('ls_azurestorageacc_Shantanu_connectionString')]"
+					},
+					"ls_snowflake_connectionString": {
+						"value": "[parameters('ls_snowflake_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_4')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_6",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_6.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_5')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_7",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_7.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_6')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_8",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_8.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_7')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_9",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_9.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_Abhishekh_connectionString": {
+						"value": "[parameters('LS_Abhishekh_connectionString')]"
+					},
+					"LS_MSSQL_Abhijit_connectionString": {
+						"value": "[parameters('LS_MSSQL_Abhijit_connectionString')]"
+					},
+					"Oracle1_connectionString": {
+						"value": "[parameters('Oracle1_connectionString')]"
+					},
+					"SQL_PS_connectionString": {
+						"value": "[parameters('SQL_PS_connectionString')]"
+					},
+					"ds_praful_mssql_connectionString": {
+						"value": "[parameters('ds_praful_mssql_connectionString')]"
+					},
+					"ls_SQL_Krishna_connectionString": {
+						"value": "[parameters('ls_SQL_Krishna_connectionString')]"
+					},
+					"ls_anuja_SqlServer_connectionString": {
+						"value": "[parameters('ls_anuja_SqlServer_connectionString')]"
+					},
+					"ls_mssql_connectionString": {
+						"value": "[parameters('ls_mssql_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_8')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_10",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_10.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_oracle_anuja_connectionString": {
+						"value": "[parameters('ls_oracle_anuja_connectionString')]"
+					},
+					"ls_oracle_shantanu_connectionString": {
+						"value": "[parameters('ls_oracle_shantanu_connectionString')]"
+					},
+					"ls_shantanu_SQL_connectionString": {
+						"value": "[parameters('ls_shantanu_SQL_connectionString')]"
+					},
+					"ls_sql_k_connectionString": {
+						"value": "[parameters('ls_sql_k_connectionString')]"
+					},
+					"ls_sql_shantanu_connectionString": {
+						"value": "[parameters('ls_sql_shantanu_connectionString')]"
+					},
+					"ls_sqlserver_connectionString": {
+						"value": "[parameters('ls_sqlserver_connectionString')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_9')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_11",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_11.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_10')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_12",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_12.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_11')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_13",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_13.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_12')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_14",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_14.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_13')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_15",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_15.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AK_Trigger_properties_typeProperties_scope": {
+						"value": "[parameters('AK_Trigger_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_14')]"
+			]
+		},
+		{
+			"name": "adfkharadi_ArmTemplate_16",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_16.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"TRG_AC_1_Oct_properties_typeProperties_scope": {
+						"value": "[parameters('TRG_AC_1_Oct_properties_typeProperties_scope')]"
+					},
+					"trg_demobulkcompyfolder_properties_typeProperties_scope": {
+						"value": "[parameters('trg_demobulkcompyfolder_properties_typeProperties_scope')]"
+					},
+					"trg_krishna_properties_typeProperties_scope": {
+						"value": "[parameters('trg_krishna_properties_typeProperties_scope')]"
+					},
+					"trg_shantanu_trigger_properties_typeProperties_scope": {
+						"value": "[parameters('trg_shantanu_trigger_properties_typeProperties_scope')]"
+					},
+					"trg_trigger_anuja_properties_typeProperties_scope": {
+						"value": "[parameters('trg_trigger_anuja_properties_typeProperties_scope')]"
+					},
+					"trg_triggerdemo_properties_typeProperties_scope": {
+						"value": "[parameters('trg_triggerdemo_properties_typeProperties_scope')]"
+					},
+					"trigger1_prakhar_properties_typeProperties_scope": {
+						"value": "[parameters('trigger1_prakhar_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfkharadi_ArmTemplate_15')]"
+			]
+		}
+	]
+}

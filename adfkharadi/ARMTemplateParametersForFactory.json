@@ -1,0 +1,126 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfkharadi"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_PS_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_krishna_connectionString": {
+			"value": ""
+		},
+		"LS_AC_AZURE_SQL_connectionString": {
+			"value": ""
+		},
+		"LS_Abhishekh_connectionString": {
+			"value": ""
+		},
+		"LS_Azure_StorageAccount_connectionString": {
+			"value": ""
+		},
+		"LS_MSSQL_Abhijit_connectionString": {
+			"value": ""
+		},
+		"Oracle1_connectionString": {
+			"value": ""
+		},
+		"SQL_PS_connectionString": {
+			"value": ""
+		},
+		"SqlServer1_connectionString": {
+			"value": ""
+		},
+		"ds_AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"ds_praful_mssql_connectionString": {
+			"value": ""
+		},
+		"ls_AzureBlobStorag_connectionString": {
+			"value": ""
+		},
+		"ls_AzureStorageAccount_Praful_connectionString": {
+			"value": ""
+		},
+		"ls_AzurestrorageAccount_anuja_connectionString": {
+			"value": ""
+		},
+		"ls_ParquetBulkCopy_shantanu_connectionString": {
+			"value": ""
+		},
+		"ls_SQL_Krishna_connectionString": {
+			"value": ""
+		},
+		"ls_anuja_SqlServer_connectionString": {
+			"value": ""
+		},
+		"ls_az_mssql_connectionString": {
+			"value": ""
+		},
+		"ls_azureSQL_shantanu_connectionString": {
+			"value": ""
+		},
+		"ls_azureblobstorage_rsckharadi_connectionString": {
+			"value": ""
+		},
+		"ls_azuresql_anuja_connectionString": {
+			"value": ""
+		},
+		"ls_azurestorageacc_Shantanu_connectionString": {
+			"value": ""
+		},
+		"ls_mssql_connectionString": {
+			"value": ""
+		},
+		"ls_oracle_anuja_connectionString": {
+			"value": ""
+		},
+		"ls_oracle_shantanu_connectionString": {
+			"value": ""
+		},
+		"ls_shantanu_SQL_connectionString": {
+			"value": ""
+		},
+		"ls_snowflake_connectionString": {
+			"value": ""
+		},
+		"ls_sql_k_connectionString": {
+			"value": ""
+		},
+		"ls_sql_shantanu_connectionString": {
+			"value": ""
+		},
+		"ls_sqlserver_connectionString": {
+			"value": ""
+		},
+		"AK_Trigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"TRG_AC_1_Oct_properties_typeProperties_scope": {
+			"value": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trg_demobulkcompyfolder_properties_typeProperties_scope": {
+			"value": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trg_krishna_properties_typeProperties_scope": {
+			"value": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trg_shantanu_trigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trg_trigger_anuja_properties_typeProperties_scope": {
+			"value": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trg_triggerdemo_properties_typeProperties_scope": {
+			"value": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		},
+		"trigger1_prakhar_properties_typeProperties_scope": {
+			"value": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi"
+		}
+	}
+}
