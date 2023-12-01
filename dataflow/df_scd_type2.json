@@ -26,6 +26,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText6",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
 				}
 			],
 			"transformations": [
@@ -40,6 +47,9 @@
 				},
 				{
 					"name": "select1"
+				},
+				{
+					"name": "split1"
 				}
 			],
 			"scriptLines": [
@@ -66,7 +76,7 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source2",
-				"select1 derive(startdate = currentDate(),",
+				"split1@select1 derive(startdate = currentDate(),",
 				"          iscurrent = 1,",
 				"          createdtime = currentTimestamp()) ~> derivedColumn1",
 				"cast1, source2 lookup(cast1@productid == source2@productid,",
@@ -85,6 +95,8 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 split(isNull(iscurrent),",
+				"     disjoint: false) ~> split1@(select1, )",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -105,7 +117,11 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+				"split1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2"
 			]
 		}
 	}
