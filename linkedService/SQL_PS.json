@@ -1,0 +1,16 @@
+{
+	"name": "SQL_PS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=ABHI\\SQLEXPRESS;initial catalog=adf;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3NzNjZGM1MC01MWIwLTRhNDAtYjk5Yy1lNGFkNGUzODY5YTYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IR-Prakhar",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

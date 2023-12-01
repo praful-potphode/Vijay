@@ -1,0 +1,42 @@
+{
+	"name": "DS_YYYY_MM_DD_AK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "co2_emission_ranking.csv",
+				"folderPath": "input/abhijit",
+				"container": "adfcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Year",
+				"type": "String"
+			},
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Emission",
+				"type": "String"
+			},
+			{
+				"name": "Rank",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

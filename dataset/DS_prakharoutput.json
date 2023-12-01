@@ -1,0 +1,42 @@
+{
+	"name": "DS_prakharoutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('Triggerps',formatDateTime(utcNow(),'yyyyMMddhhmmss'), '.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": "output/prakhar",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "none"
+		},
+		"schema": [
+			{
+				"name": "Year",
+				"type": "UTF8"
+			},
+			{
+				"name": "Country",
+				"type": "UTF8"
+			},
+			{
+				"name": "Emission",
+				"type": "UTF8"
+			},
+			{
+				"name": "Rank",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

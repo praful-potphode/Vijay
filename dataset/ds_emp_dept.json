@@ -1,0 +1,25 @@
+{
+	"name": "ds_emp_dept",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureStorageAccount_Praful",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "empdept.csv",
+				"folderPath": "output/dataflow",
+				"container": "adfcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,20 @@
+{
+	"name": "ds_Avro1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Avro",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "input/output",
+				"container": "adfcontainer"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

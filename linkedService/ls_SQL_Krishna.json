@@ -1,0 +1,16 @@
+{
+	"name": "ls_SQL_Krishna",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=LAPTOP-R9M1MPOP;initial catalog=azuredatafactory;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0YTU1YWM3MC0zYWNkLTQwMjgtYjY3Ny01ZjQ3NGYxMDllY2QiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-Krishna",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

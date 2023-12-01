@@ -1,0 +1,25 @@
+{
+	"name": "ds_copybulk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azurestorageacc_Shantanu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('transactions_',\nformatDateTime(utcnow(),'yyyymmddhhmmss')\n,'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": "output/2023/shantanu",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "none"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

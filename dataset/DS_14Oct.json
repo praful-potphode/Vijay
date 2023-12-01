@@ -1,0 +1,30 @@
+{
+	"name": "DS_14Oct",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureStorageAccount_Praful",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "transactions1.csv",
+				"folderPath": "input/Abhishek",
+				"container": "adfcontainer"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Transaction_Date|Customer_ID|Transaction_ID|Amount",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

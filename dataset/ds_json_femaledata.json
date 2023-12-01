@@ -1,0 +1,21 @@
+{
+	"name": "ds_json_femaledata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azurestorageacc_Shantanu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "p6ukbankFemale",
+				"folderPath": "output/Shantanu",
+				"container": "adfcontainer"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

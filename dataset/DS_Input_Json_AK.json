@@ -1,0 +1,30 @@
+{
+	"name": "DS_Input_Json_AK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Azure_StorageAccount",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Input_Json_AK_Para": {
+				"type": "string",
+				"defaultValue": "listusers.json"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Input_Json_AK_Para",
+					"type": "Expression"
+				},
+				"folderPath": "input/output",
+				"container": "adfcontainer"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

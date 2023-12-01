@@ -1,0 +1,28 @@
+{
+	"name": "ds_transactions_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('transactions_',formatDateTime(utcnow(),'yyyymmddhhmmss'),'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('output/',\nformatDateTime(utcnow(),'yyyy'),'/',\nformatDateTime(utcnow(),'MMMM'),'/',\nformatDateTime(utcnow(),'dd'),'/'\n\n)\n\n",
+					"type": "Expression"
+				},
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

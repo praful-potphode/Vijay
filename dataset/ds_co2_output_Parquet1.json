@@ -1,0 +1,28 @@
+{
+	"name": "ds_co2_output_Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('co2 Output',formatDateTime(utcnow(),'yyyymmddhhmmss'),'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('output/',\nformatDateTime(utcnow(),'yyyy'),'/',\nformatDateTime(utcnow(),'MMMM'),'/',\nformatDateTime(utcnow(),'dd'),'/'\n)",
+					"type": "Expression"
+				},
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

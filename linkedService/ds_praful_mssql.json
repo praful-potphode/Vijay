@@ -1,0 +1,16 @@
+{
+	"name": "ds_praful_mssql",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=desktop-p66siac;initial catalog=azuredatafactory;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI0ZGVhN2RlYy00YWQ0LTRiZDMtYTRiMi1jY2JmZTA4YjBiZWYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-desktop-p66siac",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

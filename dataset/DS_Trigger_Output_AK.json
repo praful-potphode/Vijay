@@ -1,0 +1,25 @@
+{
+	"name": "DS_Trigger_Output_AK",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('Trigger_AK',formatDateTime(utcNow(),'yyyymmddhhmmss'),'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": "output",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

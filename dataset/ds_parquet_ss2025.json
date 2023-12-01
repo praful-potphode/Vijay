@@ -1,0 +1,62 @@
+{
+	"name": "ds_parquet_ss2025",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azurestorageacc_Shantanu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "output/dataflow/Project1",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "flight_number",
+				"type": "UTF8"
+			},
+			{
+				"name": "departure_airport",
+				"type": "UTF8"
+			},
+			{
+				"name": "arrival_airport",
+				"type": "UTF8"
+			},
+			{
+				"name": "departure_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "arrival_date",
+				"type": "UTF8"
+			},
+			{
+				"name": "departure_time",
+				"type": "UTF8"
+			},
+			{
+				"name": "arrival_time",
+				"type": "UTF8"
+			},
+			{
+				"name": "airline",
+				"type": "UTF8"
+			},
+			{
+				"name": "flight_duration",
+				"type": "UTF8"
+			},
+			{
+				"name": "passenger_count",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

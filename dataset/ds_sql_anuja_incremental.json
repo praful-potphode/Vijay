@@ -1,0 +1,42 @@
+{
+	"name": "ds_sql_anuja_incremental",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_az_mssql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Transaction_Date",
+				"type": "date"
+			},
+			{
+				"name": "Customer_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Transaction_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Amount",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "transactionsAM11"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

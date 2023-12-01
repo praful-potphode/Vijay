@@ -1,0 +1,56 @@
+{
+	"name": "DS_Archive_AC",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureStorageAccount_Praful",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat(formatDateTime(utcNow(), 'yyyymmddhhmmss'), '.csv'\n\n)",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('input/Abhishek/Multiple/Archieve/',\nformatDateTime(utcnow(),'yyyy-mm-dd-hh-mm'))",
+					"type": "Expression"
+				},
+				"container": "adfcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "id",
+				"type": "String"
+			},
+			{
+				"name": "first_name",
+				"type": "String"
+			},
+			{
+				"name": "last_name",
+				"type": "String"
+			},
+			{
+				"name": "email",
+				"type": "String"
+			},
+			{
+				"name": "gender",
+				"type": "String"
+			},
+			{
+				"name": "Address",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "trg_demobulkcompyfolder",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_multiplecopy",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/adfcontainer/blobs/input/demobulkcopy",
+			"blobPathEndsWith": ".csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

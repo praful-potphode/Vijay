@@ -1,0 +1,84 @@
+{
+	"name": "DF_Abhijit",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_Input_AK",
+						"type": "DatasetReference"
+					},
+					"name": "DSInputFile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_OutPut_AK_08Oct",
+						"type": "DatasetReference"
+					},
+					"name": "DSUKBankOutPutFemale08Oct"
+				},
+				{
+					"dataset": {
+						"referenceName": "DSUKBankOutPutMale08Oct",
+						"type": "DatasetReference"
+					},
+					"name": "DSUKBankOutPutMale08Oct"
+				}
+			],
+			"transformations": [
+				{
+					"name": "SelectedCoulmns"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "FilterMale"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {Customer ID} as string,",
+				"          Name as string,",
+				"          Surname as string,",
+				"          Gender as string,",
+				"          Age as string,",
+				"          Region as string,",
+				"          {Job Classification} as string,",
+				"          {Date Joined} as string,",
+				"          Balance as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> DSInputFile",
+				"DSInputFile select(mapColumn(",
+				"          CustomerID = {Customer ID},",
+				"          Name,",
+				"          Surname,",
+				"          Gender,",
+				"          Age,",
+				"          Region,",
+				"          JobClassification = {Job Classification}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectedCoulmns",
+				"SelectedCoulmns derive({Sr.No} = random(1)) ~> derivedColumn1",
+				"derivedColumn1 split(Gender=='Female',",
+				"     disjoint: false) ~> FilterMale@(FilterFemale, FilterMale)",
+				"FilterMale@FilterFemale sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> DSUKBankOutPutFemale08Oct",
+				"FilterMale@FilterMale sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> DSUKBankOutPutMale08Oct"
+			]
+		}
+	}
+}

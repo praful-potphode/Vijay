@@ -1,0 +1,65 @@
+{
+	"name": "ds_shantanu_asgnmt_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azurestorageacc_Shantanu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "input/Shantanu",
+				"container": "adfcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "flight_number",
+				"type": "String"
+			},
+			{
+				"name": "departure_airport",
+				"type": "String"
+			},
+			{
+				"name": "arrival_airport",
+				"type": "String"
+			},
+			{
+				"name": "departure_date",
+				"type": "String"
+			},
+			{
+				"name": "arrival_date",
+				"type": "String"
+			},
+			{
+				"name": "departure_time",
+				"type": "String"
+			},
+			{
+				"name": "arrival_time",
+				"type": "String"
+			},
+			{
+				"name": "airline",
+				"type": "String"
+			},
+			{
+				"name": "flight_duration",
+				"type": "String"
+			},
+			{
+				"name": "passenger_count",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

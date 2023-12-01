@@ -1,0 +1,24 @@
+{
+	"name": "ds_json_ss2025",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azurestorageacc_Shantanu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('transactions_', formatDateTime(utcnow(),'yyyymmddhhmmss') ,'.json')",
+					"type": "Expression"
+				},
+				"folderPath": "input/Shantanu",
+				"container": "adfcontainer"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

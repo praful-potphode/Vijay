@@ -1,0 +1,17 @@
+{
+	"name": "ds_ss25_oracle",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_oracle_shantanu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "HR",
+			"table": "TRANSACTIONS"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

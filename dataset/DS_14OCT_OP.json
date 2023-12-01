@@ -1,0 +1,34 @@
+{
+	"name": "DS_14OCT_OP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Abhishekh",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Transaction_date",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Transaction_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "AMT",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "transactions"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

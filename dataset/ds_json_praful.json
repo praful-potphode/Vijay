@@ -1,0 +1,30 @@
+{
+	"name": "ds_json_praful",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureStorageAccount_Praful",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"outputfilename": {
+				"type": "string",
+				"defaultValue": "eurodebitcrisi.json"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().outputfilename",
+					"type": "Expression"
+				},
+				"folderPath": "output",
+				"container": "adfcontainer"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

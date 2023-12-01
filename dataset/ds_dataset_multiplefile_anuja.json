@@ -1,0 +1,68 @@
+{
+	"name": "ds_dataset_multiplefile_anuja",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzurestrorageAccount_anuja",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat(formatDateTime(utcNow(),'yyyy-MM-dd-hh-mm'),'.csv')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('input/Anuja/multiplecoy/archive/',\nformatDateTime(utcNow(),'yyyy-MM-dd-hh-mm')\n)",
+					"type": "Expression"
+				},
+				"container": "adfcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Customer ID",
+				"type": "String"
+			},
+			{
+				"name": "Name",
+				"type": "String"
+			},
+			{
+				"name": "Surname",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "Age",
+				"type": "String"
+			},
+			{
+				"name": "Region",
+				"type": "String"
+			},
+			{
+				"name": "Job Classification",
+				"type": "String"
+			},
+			{
+				"name": "Date Joined",
+				"type": "String"
+			},
+			{
+				"name": "Balance",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

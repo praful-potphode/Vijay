@@ -1,0 +1,30 @@
+{
+	"name": "eurodebit_jason_shantanu",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azurestorageacc_Shantanu",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Jasonfilename": {
+				"type": "string",
+				"defaultValue": "xyz"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Jasonfilename",
+					"type": "Expression"
+				},
+				"folderPath": "output",
+				"container": "adfcontainer"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

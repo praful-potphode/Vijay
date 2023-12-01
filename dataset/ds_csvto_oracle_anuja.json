@@ -1,0 +1,30 @@
+{
+	"name": "ds_csvto_oracle_anuja",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzurestrorageAccount_anuja",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "transactions1.csv",
+				"folderPath": "input/Anuja",
+				"container": "adfcontainer"
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Transaction_Date|Customer_ID|Transaction_ID|Amount",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

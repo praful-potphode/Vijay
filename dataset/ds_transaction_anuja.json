@@ -1,0 +1,17 @@
+{
+	"name": "ds_transaction_anuja",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_oracle_anuja",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "HR",
+			"table": "TRANSACTIONS"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

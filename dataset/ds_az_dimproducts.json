@@ -1,0 +1,59 @@
+{
+	"name": "ds_az_dimproducts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_az_mssql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "productid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "productname",
+				"type": "varchar"
+			},
+			{
+				"name": "price",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "startdate",
+				"type": "date"
+			},
+			{
+				"name": "enddate",
+				"type": "date"
+			},
+			{
+				"name": "iscurrent",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "createdtime",
+				"type": "date"
+			},
+			{
+				"name": "modifiedtime",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "dimproducts"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

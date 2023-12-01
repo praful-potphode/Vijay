@@ -1,0 +1,78 @@
+{
+	"name": "dataflow4",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_p6ukbankcustomers",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "PSoutput",
+						"type": "DatasetReference"
+					},
+					"name": "PSoutput"
+				}
+			],
+			"transformations": [
+				{
+					"name": "PSTransform"
+				},
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "sort1"
+				},
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {Customer ID} as string,",
+				"          Name as string,",
+				"          Surname as string,",
+				"          Gender as string,",
+				"          Age as string,",
+				"          Region as string,",
+				"          {Job Classification} as string,",
+				"          {Date Joined} as string,",
+				"          Balance as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          {Customer account} = {Customer ID},",
+				"          Name,",
+				"          Surname,",
+				"          Gender,",
+				"          Age,",
+				"          Region,",
+				"          JobClassification = {Job Classification},",
+				"          {Date.Joined} = {Date Joined},",
+				"          Balance",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> PSTransform",
+				"derivedColumn1 filter(Gender==\"Female\") ~> filter1",
+				"filter1 sort(desc(Name, true),",
+				"     desc(Age, true)) ~> sort1",
+				"PSTransform derive(SrNo = random(1),",
+				"          Agegroup = case(toInteger(Age)>22, 'Employed', 'UnEmployed')) ~> derivedColumn1",
+				"sort1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> PSoutput"
+			]
+		}
+	}
+}

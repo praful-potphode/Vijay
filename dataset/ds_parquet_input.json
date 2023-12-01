@@ -1,0 +1,39 @@
+{
+	"name": "ds_parquet_input",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureStorageAccount_Praful",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "eurodebitcrisis_praful.parquet",
+				"folderPath": "output",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "Creditor",
+				"type": "UTF8"
+			},
+			{
+				"name": "Debtor",
+				"type": "UTF8"
+			},
+			{
+				"name": "Amount",
+				"type": "UTF8"
+			},
+			{
+				"name": "Risk",
+				"type": "UTF8"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

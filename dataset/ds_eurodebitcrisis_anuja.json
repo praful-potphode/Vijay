@@ -1,0 +1,51 @@
+{
+	"name": "ds_eurodebitcrisis_anuja",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzurestrorageAccount_anuja",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Inputfilename": {
+				"type": "string",
+				"defaultValue": "abc"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Inputfilename",
+					"type": "Expression"
+				},
+				"folderPath": "input/anuja",
+				"container": "adfcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Creditor",
+				"type": "String"
+			},
+			{
+				"name": "Debtor",
+				"type": "String"
+			},
+			{
+				"name": "Amount",
+				"type": "String"
+			},
+			{
+				"name": "Risk",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

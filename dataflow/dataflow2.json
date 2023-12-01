@@ -1,0 +1,71 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_p6ukbankcustomers_df",
+						"type": "DatasetReference"
+					},
+					"name": "p6ukbankcustomes"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_p6ukbankcustwithaudit",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "AuditCOlumns"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {Customer ID} as string,",
+				"          Name as string,",
+				"          Surname as string,",
+				"          Gender as string,",
+				"          Age as string,",
+				"          Region as string,",
+				"          {Job Classification} as string,",
+				"          {Date Joined} as string,",
+				"          Balance as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> p6ukbankcustomes",
+				"p6ukbankcustomes select(mapColumn(",
+				"          CustomerID = {Customer ID},",
+				"          Name,",
+				"          Surname,",
+				"          Gender,",
+				"          Age,",
+				"          Region,",
+				"          JobClassification = {Job Classification},",
+				"          DateJoined = {Date Joined},",
+				"          Balance",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 derive(CreatedBy = 'Praful',",
+				"          CreatedDate = currentDate()) ~> AuditCOlumns",
+				"AuditCOlumns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['p6uk.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

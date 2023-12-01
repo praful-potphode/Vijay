@@ -1,0 +1,38 @@
+{
+	"name": "pl_joinsdemo",
+	"properties": {
+		"activities": [
+			{
+				"name": "df_emp_dept",
+				"description": "join employee and department table and export it to csv",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "df_joins_empdept",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"folder": {
+			"name": "praful"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-08T06:01:29Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

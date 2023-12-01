@@ -1,0 +1,20 @@
+{
+	"name": "ds_xml",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Azure_StorageAccount",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Xml",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "output.xml",
+				"folderPath": "input/output",
+				"container": "adfcontainer"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

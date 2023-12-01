@@ -1,0 +1,25 @@
+{
+	"name": "Parquet4_project1_anuja",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzurestrorageAccount_anuja",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('transactions_',\nformatDateTime(utcnow(),'yyyymmddhhmmss')\n,'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": "output/project1",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "none"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "ds_Parquet24sept",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureStorageAccount_Praful",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('transactions_',\nformatDateTime(utcnow(),'yyyyMMddhhmmss')\n,'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": "output/bulkcopy",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

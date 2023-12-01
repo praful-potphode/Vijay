@@ -1,0 +1,28 @@
+{
+	"name": "Parquet_Prak_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('dailyreport',formatDateTime(utcNow(),'yyyyddmm'))",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "output/2023/prakhar/",
+					"type": "Expression"
+				},
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,25 @@
+{
+	"name": "DS_emission_output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "emisson.parquet",
+				"folderPath": {
+					"value": "@concat('output/prakhar/', formatDateTime(utcNow(), 'yyyy'), '/', formatDateTime(utcNow(),'MMMM'), '/',formatDateTime(utcNow(),'dd'), '/')",
+					"type": "Expression"
+				},
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

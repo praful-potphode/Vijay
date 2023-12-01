@@ -1,0 +1,42 @@
+{
+	"name": "ds_azureSQLincremental",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azureSQL_shantanu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Transaction_Date",
+				"type": "date"
+			},
+			{
+				"name": "Customer_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Transaction_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Amount",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "transactions25SS"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

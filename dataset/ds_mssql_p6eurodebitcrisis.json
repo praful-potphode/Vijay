@@ -1,0 +1,36 @@
+{
+	"name": "ds_mssql_p6eurodebitcrisis",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ds_praful_mssql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Creditor",
+				"type": "varchar"
+			},
+			{
+				"name": "Debitor",
+				"type": "varchar"
+			},
+			{
+				"name": "Amount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "Risk",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "p6eurodebitcrisis"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

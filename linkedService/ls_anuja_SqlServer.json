@@ -1,0 +1,16 @@
+{
+	"name": "ls_anuja_SqlServer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=DESKTOP-O4ODTN0;initial catalog=adf;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwNmMzNTQ3Yy1lNDc2LTQ5MWUtOTg0OC0zNjlmODc0ZDI1NjQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-anuja",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

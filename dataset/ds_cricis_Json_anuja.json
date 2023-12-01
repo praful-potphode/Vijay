@@ -1,0 +1,30 @@
+{
+	"name": "ds_cricis_Json_anuja",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzurestrorageAccount_anuja",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Fileconnect": {
+				"type": "string",
+				"defaultValue": "bnm"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Fileconnect",
+					"type": "Expression"
+				},
+				"folderPath": "output",
+				"container": "adfcontainer"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

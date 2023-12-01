@@ -1,0 +1,28 @@
+{
+	"name": "DS_AC_Extract_Output",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('Output/',formatDateTime(utcnow(),'yyyy'),'/',\nformatDateTime(utcnow(),'MMMM'),'/',\nformatDateTime(utcnow(),'dd'),'/')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat('output/Abhi_Kat/',formatDateTime(utcNow(),'yyyy'),'/',formatDateTime(utcNow(),'MMM'),'/',formatDateTime(utcNow(),'dd'),'/')",
+					"type": "Expression"
+				},
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

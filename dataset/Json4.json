@@ -1,0 +1,42 @@
+{
+	"name": "Json4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureStorageAccount_Praful",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "input/input/krishna",
+				"container": "adfcontainer"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Customer ID": {
+					"type": "string"
+				},
+				"Name": {
+					"type": "string"
+				},
+				"Surname": {
+					"type": "string"
+				},
+				"Gender": {
+					"type": "string"
+				},
+				"Region": {
+					"type": "string"
+				},
+				"Balance": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

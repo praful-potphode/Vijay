@@ -1,0 +1,16 @@
+{
+	"name": "ls_oracle_anuja",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "Oracle",
+		"typeProperties": {
+			"connectionString": "host=localhost;port=1521;sid=xe;user id=hr",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2MjI0YjMxYy1kZjhlLTQxNjMtYWM0Mi1iZmQ4ZTg0MDE0ZjIiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-anuja",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

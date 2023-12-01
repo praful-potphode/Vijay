@@ -1,0 +1,126 @@
+{
+	"name": "ds_snowflake",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_snowflake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [
+			{
+				"name": "C_CUSTOMER_SK",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "C_CUSTOMER_ID",
+				"type": "VARCHAR",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "C_CURRENT_CDEMO_SK",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "C_CURRENT_HDEMO_SK",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "C_CURRENT_ADDR_SK",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "C_FIRST_SHIPTO_DATE_SK",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "C_FIRST_SALES_DATE_SK",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "C_SALUTATION",
+				"type": "VARCHAR",
+				"precision": 10,
+				"scale": 0
+			},
+			{
+				"name": "C_FIRST_NAME",
+				"type": "VARCHAR",
+				"precision": 20,
+				"scale": 0
+			},
+			{
+				"name": "C_LAST_NAME",
+				"type": "VARCHAR",
+				"precision": 30,
+				"scale": 0
+			},
+			{
+				"name": "C_PREFERRED_CUST_FLAG",
+				"type": "VARCHAR",
+				"precision": 1,
+				"scale": 0
+			},
+			{
+				"name": "C_BIRTH_DAY",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "C_BIRTH_MONTH",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "C_BIRTH_YEAR",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "C_BIRTH_COUNTRY",
+				"type": "VARCHAR",
+				"precision": 20,
+				"scale": 0
+			},
+			{
+				"name": "C_LOGIN",
+				"type": "VARCHAR",
+				"precision": 13,
+				"scale": 0
+			},
+			{
+				"name": "C_EMAIL_ADDRESS",
+				"type": "VARCHAR",
+				"precision": 50,
+				"scale": 0
+			},
+			{
+				"name": "C_LAST_REVIEW_DATE",
+				"type": "VARCHAR",
+				"precision": 10,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "TPCDS_SF10TCL",
+			"table": "CUSTOMER"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

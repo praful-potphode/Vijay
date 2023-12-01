@@ -1,0 +1,31 @@
+{
+	"name": "ds_eurodebitcrisis_parquet_an",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzurestrorageAccount_anuja",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Filename1": {
+				"type": "string",
+				"defaultValue": "eurodebitcrisis_anuja.parquet"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Filename1",
+					"type": "Expression"
+				},
+				"folderPath": "output",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

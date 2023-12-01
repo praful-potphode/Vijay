@@ -1,0 +1,31 @@
+{
+	"name": "ds_parquet_parameters",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"output_file_name": {
+				"type": "string",
+				"defaultValue": "P6-EuroDebtCrisis.parquet"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().output_file_name",
+					"type": "Expression"
+				},
+				"folderPath": "input/output",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

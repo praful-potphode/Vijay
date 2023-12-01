@@ -1,0 +1,68 @@
+{
+	"name": "pl_csvtobin_shantanu",
+	"properties": {
+		"description": "pl_csvtobin_shantanu\nload csv to bin",
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_eurodebitcrisis_Shantanu",
+						"type": "DatasetReference",
+						"parameters": {
+							"Filename": "age_gender.csv"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "eurodebit_jason_shantanu",
+						"type": "DatasetReference",
+						"parameters": {
+							"Jasonfilename": "age_gender.json"
+						}
+					}
+				]
+			}
+		],
+		"folder": {
+			"name": "Other"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-09-30T11:51:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

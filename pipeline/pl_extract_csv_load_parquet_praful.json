@@ -1,0 +1,84 @@
+{
+	"name": "pl_extract_csv_load_parquet_praful",
+	"properties": {
+		"description": "pl_extract_csv_load_parquet_praful\nExtract csv Data\nLoad it in Parquet",
+		"activities": [
+			{
+				"name": "Copy data from CSV to Parquet",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_eurodebitcrisis_praful",
+						"type": "DatasetReference",
+						"parameters": {
+							"filname": {
+								"value": "@pipeline().parameters.input",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_json_praful",
+						"type": "DatasetReference",
+						"parameters": {
+							"outputfilename": {
+								"value": "@pipeline().parameters.output",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"input": {
+				"type": "string",
+				"defaultValue": "age_gender.csv"
+			},
+			"output": {
+				"type": "string",
+				"defaultValue": "age_gender_pl.json"
+			}
+		},
+		"folder": {
+			"name": "praful"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-09-24T12:43:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

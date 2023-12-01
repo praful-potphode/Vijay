@@ -1,0 +1,44 @@
+{
+	"name": "pl_shantanu_script",
+	"properties": {
+		"activities": [
+			{
+				"name": "Script1",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "ls_shantanu_SQL",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"parameters": [
+								{
+									"name": "gender",
+									"type": "String",
+									"value": "Male",
+									"direction": "Input"
+								}
+							],
+							"type": "Query",
+							"text": "--declare @gender varchar(25)\nselect top 3 * from dbo.employeedata where gender =@gender\nselect top 3 * from dbo.employeedata where gender <> @gender \n"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-10-29T06:03:56Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

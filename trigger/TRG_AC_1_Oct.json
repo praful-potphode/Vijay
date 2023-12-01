@@ -1,0 +1,24 @@
+{
+	"name": "TRG_AC_1_Oct",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_Bulk_AC",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/adfcontainer/blobs/input/Abhishek",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/efaf5704-411f-4ecf-b8c2-209857738b64/resourceGroups/adfkharadi/providers/Microsoft.Storage/storageAccounts/storageaccountadfkharadi",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"name": "ds_shantanu_asgnmt_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azurestorageacc_Shantanu",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('transactions_', formatDateTime(utcnow(),'yyyymmddhhmmss') ,'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": "output/dataflow/Project1",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "none"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,83 @@
+{
+	"name": "DF_AC_SERIAL",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_AC_INPUT",
+						"type": "DatasetReference"
+					},
+					"name": "INPUT"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "OUTPUT"
+				}
+			],
+			"transformations": [
+				{
+					"name": "ID"
+				},
+				{
+					"name": "CONVERTTOINT"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          email as string,",
+				"          gender as string,",
+				"          salary as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> INPUT",
+				"INPUT keyGenerate(output(ID as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> ID",
+				"ID cast(output(",
+				"          salary as integer '000'",
+				"     ),",
+				"     errors: true) ~> CONVERTTOINT",
+				"CONVERTTOINT select(mapColumn(",
+				"          first_name,",
+				"          last_name,",
+				"          email,",
+				"          id = ID,",
+				"          gender,",
+				"          salary",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          id as integer,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          gender as string,",
+				"          salary as decimal(19,4)",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> OUTPUT"
+			]
+		}
+	}
+}

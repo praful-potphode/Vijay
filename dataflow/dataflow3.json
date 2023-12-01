@@ -1,0 +1,95 @@
+{
+	"name": "dataflow3",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_ss_8octCSV",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_ss8oct_json",
+						"type": "DatasetReference"
+					},
+					"name": "Storeoutputss"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_json_femaledata",
+						"type": "DatasetReference"
+					},
+					"name": "sinkFemaleData"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "sort1"
+				},
+				{
+					"name": "split1"
+				},
+				{
+					"name": "sort2"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {Customer ID} as string,",
+				"          Name as string,",
+				"          Surname as string,",
+				"          Gender as string,",
+				"          Age as string,",
+				"          Region as string,",
+				"          {Job Classification} as string,",
+				"          {Date Joined} as string,",
+				"          Balance as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          CustomerID = {Customer ID},",
+				"          Name,",
+				"          Surname,",
+				"          Gender,",
+				"          Age,",
+				"          Region,",
+				"          JobCategory = {Job Classification}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"split1@SpiltbyMale filter(Region=='England') ~> filter1",
+				"filter1 sort(asc(Name, false),",
+				"     asc(CustomerID, true)) ~> sort1",
+				"select1 split(Gender=='Male',",
+				"     disjoint: false) ~> split1@(SpiltbyMale, SplitbyFemale)",
+				"split1@SplitbyFemale sort(asc(CustomerID, false),",
+				"     asc(Name, false)) ~> sort2",
+				"sort1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> Storeoutputss",
+				"sort2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['p6ukfemale.json'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sinkFemaleData"
+			]
+		}
+	}
+}

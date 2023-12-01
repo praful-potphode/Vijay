@@ -1,0 +1,17 @@
+{
+	"name": "ds_oracle_transactions",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Oracle1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "OracleTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "HR",
+			"table": "TRANSACTIONS"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,16 @@
+{
+	"name": "LS_MSSQL_Abhijit",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=DESKTOP-FI2BP52\\SQLEXPRESS;initial catalog=DB_AK;user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJlMDY2NTU2MC1mYzg3LTRmYzAtYjNjMS1lNWI4ZThkYjRiZjYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IR-AbhijitKatkar",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"name": "ds_productsdim",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azureblobstorage_rsckharadi",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "dimproducts.csv",
+				"folderPath": "input/scd2",
+				"container": "adfcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "productid",
+				"type": "String"
+			},
+			{
+				"name": "productname",
+				"type": "String"
+			},
+			{
+				"name": "price",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

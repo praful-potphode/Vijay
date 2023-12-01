@@ -1,0 +1,31 @@
+{
+	"name": "ds_bulkcopy_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureStorageAccount_Praful",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string",
+				"defaultValue": "abc.parquet"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('Output/',formatDateTime(utcnow(),'yyy'),'/',formatDateTime(utcnow(),'MMMM'),'/',formatDateTime(utcnow(),'dd'),'/')",
+					"type": "Expression"
+				},
+				"folderPath": "output/2023/September",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

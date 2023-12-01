@@ -1,0 +1,37 @@
+{
+	"name": "ds_mssql_transactions",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_mssql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Transaction_Date",
+				"type": "date"
+			},
+			{
+				"name": "Customer_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Transaction_ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Amount",
+				"type": "float",
+				"precision": 15
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "transactions"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

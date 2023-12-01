@@ -1,0 +1,31 @@
+{
+	"name": "Parameters_Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzureBlobStorag",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"abc": {
+				"type": "string",
+				"defaultValue": "Parameters_Parquet"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().abc",
+					"type": "Expression"
+				},
+				"folderPath": "input/output",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

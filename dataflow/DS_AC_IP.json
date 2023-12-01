@@ -1,0 +1,118 @@
+{
+	"name": "DS_AC_IP",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_AC_INCREMENTAL",
+						"type": "DatasetReference"
+					},
+					"name": "ACINPUT"
+				},
+				{
+					"dataset": {
+						"referenceName": "AC_TRANSACTION",
+						"type": "DatasetReference"
+					},
+					"name": "ACOUTPUT"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AC_TRANSACTION",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				},
+				{
+					"name": "MapDrifted1",
+					"description": "Creates an explicit mapping for each drifted column"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "surrogateKey1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select2"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Transaction_Date as string,",
+				"          Customer_ID as string,",
+				"          Transaction_ID as string,",
+				"          Amount as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ACINPUT",
+				"source(output(",
+				"          id as integer,",
+				"          Transaction_Date as date,",
+				"          Customer_ID as integer,",
+				"          Transaction_ID as integer,",
+				"          Amount as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     query: 'SELECT COUNT(*) AS #COUNT FROM AC_TRANSACTIONS',",
+				"     format: 'query') ~> ACOUTPUT",
+				"ACINPUT, select1 join(1==1,",
+				"     joinType:'cross',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"ACOUTPUT derive({#COUNT} = toInteger(byName('#COUNT'))) ~> MapDrifted1",
+				"MapDrifted1 select(mapColumn(",
+				"          {#COUNT}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"join1 keyGenerate(output(SRNO as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1",
+				"surrogateKey1 derive(ID = SRNO+{#COUNT}) ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          ID,",
+				"          Transaction_Date,",
+				"          Customer_ID,",
+				"          Transaction_ID,",
+				"          Amount",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"select2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          id as integer,",
+				"          Transaction_Date as date,",
+				"          Customer_ID as integer,",
+				"          Transaction_ID as integer,",
+				"          Amount as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}

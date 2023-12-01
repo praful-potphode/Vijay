@@ -1,0 +1,25 @@
+{
+	"name": "ds_Parquet_output_anuja",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AzurestrorageAccount_anuja",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('transactions_',\nformatDateTime(utcnow(),'yyyymmddhhmmss')\n,'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": "output/2023/anuja",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,22 @@
+{
+	"name": "ds_Parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Azure_StorageAccount",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "output2.parquet",
+				"folderPath": "input/output",
+				"container": "adfcontainer"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

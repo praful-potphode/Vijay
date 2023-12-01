@@ -1,0 +1,34 @@
+{
+	"name": "SqlServerTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_MSSQL_Abhijit",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Transaction_Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Customer_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Transaction_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Amount",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "transactions"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
