@@ -7552,9 +7552,9 @@
 								"datasetParameters": {
 									"source1": {},
 									"source2": {},
-									"sink1": {}
-								},
-								"linkedServiceParameters": {}
+									"sink1": {},
+									"sink2": {}
+								}
 							},
 							"staging": {},
 							"compute": {
@@ -11232,6 +11232,35 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_AzureBlobStorag')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText6')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_AzureStorageAccount_Praful",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "scd2.csv",
+						"folderPath": "output",
+						"container": "adfcontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_AzureStorageAccount_Praful')]"
 			]
 		},
 		{
@@ -18660,6 +18689,13 @@
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
+						},
+						{
+							"dataset": {
+								"referenceName": "DelimitedText6",
+								"type": "DatasetReference"
+							},
+							"name": "sink2"
 						}
 					],
 					"transformations": [
@@ -18674,6 +18710,9 @@
 						},
 						{
 							"name": "select1"
+						},
+						{
+							"name": "split1"
 						}
 					],
 					"scriptLines": [
@@ -18700,7 +18739,7 @@
 						"     validateSchema: false,",
 						"     isolationLevel: 'READ_UNCOMMITTED',",
 						"     format: 'table') ~> source2",
-						"select1 derive(startdate = currentDate(),",
+						"split1@select1 derive(startdate = currentDate(),",
 						"          iscurrent = 1,",
 						"          createdtime = currentTimestamp()) ~> derivedColumn1",
 						"cast1, source2 lookup(cast1@productid == source2@productid,",
@@ -18719,6 +18758,8 @@
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select1",
+						"select1 split(isNull(iscurrent),",
+						"     disjoint: false) ~> split1@(select1, sink2)",
 						"derivedColumn1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
@@ -18739,13 +18780,18 @@
 						"     format: 'table',",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+						"split1@sink2 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> sink2"
 					]
 				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_productsdim')]",
-				"[concat(variables('factoryId'), '/datasets/ds_az_dimproducts')]"
+				"[concat(variables('factoryId'), '/datasets/ds_az_dimproducts')]",
+				"[concat(variables('factoryId'), '/datasets/DelimitedText6')]"
 			]
 		},
 		{

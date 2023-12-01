@@ -34,16 +34,56 @@
 		"ls_anuja_SqlServer_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_anuja_SqlServer'"
-		},
-		"ls_mssql_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'ls_mssql'"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_ss_incrementalload')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_azurestorageacc_Shantanu",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "transactions1.csv",
+						"folderPath": "input/transactions",
+						"container": "adfcontainer"
+					},
+					"columnDelimiter": "|",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Transaction_Date",
+						"type": "String"
+					},
+					{
+						"name": "Customer_ID",
+						"type": "String"
+					},
+					{
+						"name": "Transaction_ID",
+						"type": "String"
+					},
+					{
+						"name": "Amount",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_transaction')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -620,23 +660,6 @@
 				},
 				"connectVia": {
 					"referenceName": "ir-anuja",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ls_mssql')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('ls_mssql_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "ir-desktop-p66siac",
 					"type": "IntegrationRuntimeReference"
 				}
 			},

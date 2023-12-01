@@ -439,9 +439,6 @@
 					},
 					"ls_anuja_SqlServer_connectionString": {
 						"value": "[parameters('ls_anuja_SqlServer_connectionString')]"
-					},
-					"ls_mssql_connectionString": {
-						"value": "[parameters('ls_mssql_connectionString')]"
 					}
 				}
 			},
@@ -462,6 +459,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"ls_mssql_connectionString": {
+						"value": "[parameters('ls_mssql_connectionString')]"
 					},
 					"ls_oracle_anuja_connectionString": {
 						"value": "[parameters('ls_oracle_anuja_connectionString')]"
@@ -580,9 +580,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"AK_Trigger_properties_typeProperties_scope": {
-						"value": "[parameters('AK_Trigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -603,6 +600,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"AK_Trigger_properties_typeProperties_scope": {
+						"value": "[parameters('AK_Trigger_properties_typeProperties_scope')]"
 					},
 					"TRG_AC_1_Oct_properties_typeProperties_scope": {
 						"value": "[parameters('TRG_AC_1_Oct_properties_typeProperties_scope')]"
