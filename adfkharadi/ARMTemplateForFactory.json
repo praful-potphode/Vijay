@@ -18713,6 +18713,9 @@
 						},
 						{
 							"name": "split1"
+						},
+						{
+							"name": "exists1"
 						}
 					],
 					"scriptLines": [
@@ -18747,19 +18750,25 @@
 						"     pickup: 'any',",
 						"     broadcast: 'auto')~> lookup1",
 						"source1 cast(output(",
-						"          productid as integer",
+						"          productid as integer,",
+						"          price as integer",
 						"     ),",
 						"     errors: true) ~> cast1",
 						"lookup1 select(mapColumn(",
 						"          productid = cast1@productid,",
 						"          productname = source1@productname,",
-						"          price = source1@price,",
+						"          price = cast1@price,",
 						"          iscurrent",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> select1",
 						"select1 split(isNull(iscurrent),",
 						"     disjoint: false) ~> split1@(select1, sink2)",
+						"split1@sink2, source2 exists(split1@sink2@productid == source2@productid",
+						"     && split1@sink2@productname == source2@productname",
+						"     && split1@sink2@price == source2@price,",
+						"     negate:true,",
+						"     broadcast: 'auto')~> exists1",
 						"derivedColumn1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",
@@ -18781,7 +18790,7 @@
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true,",
 						"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
-						"split1@sink2 sink(allowSchemaDrift: true,",
+						"exists1 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     skipDuplicateMapInputs: true,",
 						"     skipDuplicateMapOutputs: true) ~> sink2"
