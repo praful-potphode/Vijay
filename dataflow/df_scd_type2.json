@@ -69,6 +69,12 @@
 				},
 				{
 					"name": "alterRow1"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "exists2"
 				}
 			],
 			"scriptLines": [
@@ -93,12 +99,13 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     inferDriftedColumnTypes: true,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source2",
 				"split1@select1 derive(startdate = currentDate(),",
 				"          iscurrent = 1,",
 				"          createdtime = currentTimestamp()) ~> derivedColumn1",
-				"cast1, source2 lookup(cast1@productid == source2@productid,",
+				"cast1, select2 lookup(cast1@productid == select2@productid,",
 				"     multiple: false,",
 				"     pickup: 'any',",
 				"     broadcast: 'auto')~> lookup1",
@@ -116,10 +123,10 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"select1 split(isNull(iscurrent),",
-				"     disjoint: false) ~> split1@(select1, sink2)",
-				"split1@sink2, source2 exists(split1@sink2@productid == source2@productid",
-				"     && (split1@sink2@productname != source2@productname",
-				"     ||  split1@sink2@price != source2@price),",
+				"     disjoint: false) ~> split1@(select1, sink3)",
+				"split1@sink3, source2 exists(split1@sink2@productid == select2@productid",
+				"     && (split1@sink2@productname != select2@productname",
+				"     ||  split1@sink2@price != select2@price),",
 				"     negate:false,",
 				"     broadcast: 'auto')~> exists1",
 				"exists1 derive(iscurrent = 1,",
@@ -129,6 +136,18 @@
 				"          modifiedtime = currentTimestamp(),",
 				"          enddate = currentTimestamp()) ~> derivedColumn3",
 				"derivedColumn3 alterRow(updateIf(true())) ~> alterRow1",
+				"source2 select(mapColumn(",
+				"          id,",
+				"          productid,",
+				"          iscurrent,",
+				"          price,",
+				"          productname",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"split1@sink3, select2 exists(split1@sink3@productid == select2@productid,",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists2",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
