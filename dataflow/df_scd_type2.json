@@ -29,7 +29,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "DelimitedText6",
+						"referenceName": "ds_az_dimproducts",
 						"type": "DatasetReference"
 					},
 					"name": "sink2"
@@ -53,6 +53,9 @@
 				},
 				{
 					"name": "exists1"
+				},
+				{
+					"name": "derivedColumn2"
 				}
 			],
 			"scriptLines": [
@@ -102,10 +105,13 @@
 				"select1 split(isNull(iscurrent),",
 				"     disjoint: false) ~> split1@(select1, sink2)",
 				"split1@sink2, source2 exists(split1@sink2@productid == source2@productid",
-				"     && split1@sink2@productname == source2@productname",
-				"     && split1@sink2@price == source2@price,",
-				"     negate:true,",
+				"     && (split1@sink2@productname != source2@productname",
+				"     ||  split1@sink2@price != source2@price),",
+				"     negate:false,",
 				"     broadcast: 'auto')~> exists1",
+				"exists1 derive(iscurrent = 1,",
+				"          createdtime = currentTimestamp(),",
+				"          startdate = currentUTC('IST')) ~> derivedColumn2",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -127,10 +133,27 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
-				"exists1 sink(allowSchemaDrift: true,",
+				"derivedColumn2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          id as integer,",
+				"          productid as integer,",
+				"          productname as string,",
+				"          price as decimal(19,4),",
+				"          startdate as date,",
+				"          enddate as date,",
+				"          iscurrent as integer,",
+				"          createdtime as date,",
+				"          modifiedtime as date",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2"
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
 			]
 		}
 	}
