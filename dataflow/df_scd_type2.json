@@ -10,6 +10,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_az_dimproducts",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
 				}
 			],
 			"sinks": [
@@ -24,6 +31,15 @@
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "lookup1"
+				},
+				{
+					"name": "cast1"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -35,9 +51,40 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 derive(startdate = currentDate(),",
+				"source(output(",
+				"          id as integer,",
+				"          productid as integer,",
+				"          productname as string,",
+				"          price as decimal(19,4),",
+				"          startdate as date,",
+				"          enddate as date,",
+				"          iscurrent as integer,",
+				"          createdtime as date,",
+				"          modifiedtime as date",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2",
+				"select1 derive(startdate = currentDate(),",
 				"          iscurrent = 1,",
 				"          createdtime = currentTimestamp()) ~> derivedColumn1",
+				"cast1, source2 lookup(cast1@productid == source2@productid,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1",
+				"source1 cast(output(",
+				"          productid as integer",
+				"     ),",
+				"     errors: true) ~> cast1",
+				"lookup1 select(mapColumn(",
+				"          productid = cast1@productid,",
+				"          productname = source1@productname,",
+				"          price = source1@price,",
+				"          iscurrent",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
