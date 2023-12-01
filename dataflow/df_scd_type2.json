@@ -33,6 +33,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink2"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_az_dimproducts",
+						"type": "DatasetReference"
+					},
+					"name": "sink3"
 				}
 			],
 			"transformations": [
@@ -56,6 +63,12 @@
 				},
 				{
 					"name": "derivedColumn2"
+				},
+				{
+					"name": "derivedColumn3"
+				},
+				{
+					"name": "alterRow1"
 				}
 			],
 			"scriptLines": [
@@ -112,6 +125,10 @@
 				"exists1 derive(iscurrent = 1,",
 				"          createdtime = currentTimestamp(),",
 				"          startdate = currentUTC('IST')) ~> derivedColumn2",
+				"exists1 derive(iscurrent = 0,",
+				"          modifiedtime = currentTimestamp(),",
+				"          enddate = currentTimestamp()) ~> derivedColumn3",
+				"derivedColumn3 alterRow(updateIf(true())) ~> alterRow1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
@@ -153,7 +170,28 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2",
+				"alterRow1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          id as integer,",
+				"          productid as integer,",
+				"          productname as string,",
+				"          price as decimal(19,4),",
+				"          startdate as date,",
+				"          enddate as date,",
+				"          iscurrent as integer,",
+				"          createdtime as date,",
+				"          modifiedtime as date",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:false,",
+				"     updateable:true,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink3"
 			]
 		}
 	}
